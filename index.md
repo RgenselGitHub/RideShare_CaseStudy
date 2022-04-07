@@ -18,7 +18,7 @@ For the ask part of the data analysis step I identify the business task and cons
 
 
 ## Prepare
-For the prepare part of the data analysis I will download the data and store it, identify how its organized, determine the credibility of the data so that I know I can use it in the later steps, and decide what tools I will be using for the project.
+For the prepare part of the data analysis I will download the data and store it, identify how its organized, determine the credibility of the data so that I know I can use it in the later steps, decide what tools I will be using for the project, and load the data into the tools I will be using..
 
 **Download Data**: For downloading the data I have download 12 different data sets on bike rides for the 12 months of 2021 and stored them in a folder that I created just for this project.
 
@@ -29,11 +29,18 @@ For the prepare part of the data analysis I will download the data and store it,
 **Tools**: The tools I will be using for this project will be R and RStudio. I will also be using packages that RStudio offer. The packages are loaded below.
 
 ```markdown
-library(dplyr)
-library(plyr)
-library(readr)
+library(tidyverse)
 ```
 
+**Loading Data**:
+For loading our data I will use the tidyverse package. Since we have 12 datasets to look at I want to combine all twelve into one dataset.
+```
+data_all = list.files(path="C:/Users/rgens/OneDrive/Desktop/RideShare", # Looks for all csv files in my folder and puts them in a list.
+                      pattern="*.csv",full.names=TRUE) %>%
+  lapply(read_csv) %>% # Applies the read_csv function to all objects in my list.
+  bind_rows # Combines data into one dataset
+head(data_all)
+```
 
 
 ## Process
